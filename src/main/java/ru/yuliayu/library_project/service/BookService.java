@@ -6,4 +6,10 @@ import java.util.List;
 
 public interface BookService {
     List<BookDto> getBookByGenre(Long genreId);
+
+    BookDto getByNameV1(String name);
+
+    BookDto getByNameV2(String name);
+
+    BookDto getByNameV3(String name);
 }
