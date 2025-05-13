@@ -1,11 +1,14 @@
 package ru.yuliayu.library_project.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.yuliayu.library_project.dto.BookCreateDto;
 import ru.yuliayu.library_project.dto.BookDto;
 import ru.yuliayu.library_project.dto.BookUpdateDto;
 import ru.yuliayu.library_project.service.BookService;
+
+import org.springframework.ui.Model;
 
 @RestController
 @RequiredArgsConstructor
@@ -41,6 +44,4 @@ public class BookController {
     void deleteBook(@PathVariable("id") Long id){
         bookService.deleteBook(id);
     }
-
-
 }

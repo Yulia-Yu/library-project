@@ -17,6 +17,7 @@ import ru.yuliayu.library_project.repository.GenreRepository;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -75,6 +76,12 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteBook(Long id){
         bookRepository.deleteById(id);
+    }
+
+    @Override
+    public List<BookDto> getAllBooks() {
+        List<Book> books = bookRepository.findAll();
+        return books.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 
     private Book convertToDtoEntity(BookCreateDto bookCreateDto){

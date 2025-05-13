@@ -16,6 +16,7 @@ import ru.yuliayu.library_project.model.Book;
 import ru.yuliayu.library_project.repository.AuthorRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -76,6 +77,13 @@ public class AuthorServiceImpl implements AuthorService{
     public void deleteAuthor(Long id) {
         authorRepository.deleteById(id);
     }
+
+    @Override
+    public List<AuthorDto> getAllAuthors(){
+        List<Author> authors = authorRepository.findAll();
+        return authors.stream().map(this::convertEntityToDto).collect(Collectors.toList());
+    }
+
 
     private AuthorDto convertToDto(Author author) {
         List<BookDto> bookDtoList = author.getBooks()
